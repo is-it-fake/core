@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 )
 
 type EmailRequest struct {
@@ -102,6 +103,10 @@ func checkEmailHandler(c *gin.Context) {
 
 func main() {
 	r := gin.Default()
+
+	// Enable CORS for all origins (unsafe for production)
+	r.Use(cors.Default())
+	
 	r.POST("/check-email", checkEmailHandler)
 
 	port := ":8080"
