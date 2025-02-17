@@ -101,13 +101,26 @@ func checkEmailHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+func health(c *gin.Context) {
+	
+	response := struct {
+		Status string `json:"status"`
+	}{
+		Status: "Ok",
+	}
+
+	c.JSON(http.StatusOK, response)
+}
+
 func main() {
 	r := gin.Default()
 
 	// Enable CORS for all origins (unsafe for production)
 	r.Use(cors.Default())
 	
+	r.GET("/health", health)
 	r.POST("/check-email", checkEmailHandler)
+
 
 	port := ":8080"
 	log.Printf("Starting server on %s...", port)
