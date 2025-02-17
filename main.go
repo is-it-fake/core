@@ -223,7 +223,7 @@ func main() {
 	r.GET("/health", health)
 	r.POST("/check-email", checkEmailHandler)
 	// Bulk email verification endpoint using SSE.
-	r.POST("/check-emails", checkBulkEmailsStreamHandler)
+	r.POST("/check-bulk-emails", checkBulkEmailsStreamHandler)
 
 	port := ":8080"
 	log.Printf("Starting server on %s...", port)
